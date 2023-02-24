@@ -1,1 +1,23 @@
-[{"_id":"0243d249-bf46-4067-bf36-5997e33bb5fe","name":"Sedan","releaseYears":2022,"avalaible":true,"gasAvailable":true},{"_id":"5bd3513a-8fda-4465-b149-6f032b59244c","name":"Hatchback","releaseYears":2022,"avalaible":true,"gasAvailable":true},{"_id":"27c40b42-b552-42f7-955b-7372eeccb2ff","name":"Cargo Van","releaseYears":2022,"avalaible":true,"gasAvailable":true}]
+[
+    {
+        "_id": "0243d249-bf46-4067-bf36-5997e33bb5fe",
+        "name": "Sedan",
+        "releaseYears": 2022,
+        "avalaible": true,
+        "gasAvailable": true
+    },
+    {
+        "_id": "5bd3513a-8fda-4465-b149-6f032b59244c",
+        "name": "Hatchback",
+        "releaseYears": 2022,
+        "avalaible": true,
+        "gasAvailable": true
+    },
+    {
+        "_id": "27c40b42-b552-42f7-955b-7372eeccb2ff",
+        "name": "Cargo Van",
+        "releaseYears": 2022,
+        "avalaible": true,
+        "gasAvailable": true
+    }
+]
