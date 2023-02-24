@@ -1,8 +1,8 @@
 const Base = require("../base/baseStructure.js")
 
 class Costumers extends Base{
-    constructor({id,name,age}){
-        super({id,name});
+    constructor({_id,name,age}){
+        super({_id,name});
         this.age = age;
     }
 }

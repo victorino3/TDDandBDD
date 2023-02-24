@@ -1,8 +1,8 @@
 const Base = require("../base/baseStructure.js")
 
 class CarCategory extends Base{
-    constructor({id,name,carId,price}){
-        super({id,name});
+    constructor({_id,name,carId,price}){
+        super({_id,name});
         this.carId = carId;
         this.price = price;
     }
