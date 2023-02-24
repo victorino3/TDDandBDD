@@ -1,9 +1,9 @@
 const Base = require("../base/baseStructure.js")
 class Cars extends Base{
-    constructor({_id,name,releaseYears,avalaibleMoney,gasAvailable}){
+    constructor({_id,name,releaseYears,avalaible,gasAvailable}){
         super({_id,name});
             this.releaseYears = releaseYears
-            this.avalaibleMoney = avalaibleMoney
+            this.avalaible = avalaible
             this.gasAvailable = gasAvailable
     }
 }
