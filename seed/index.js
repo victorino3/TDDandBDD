@@ -46,5 +46,4 @@ const write = async (filename,data)=>{ await writeFile(join(baseGenerator,filena
     write("cars.json",avalaibleCars)
     write("carCategory.json",[CarCategory])
     write("costumers.json",constumersSystem)
-    console.log("Done")
 })()
