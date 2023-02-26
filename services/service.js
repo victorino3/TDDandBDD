@@ -1,5 +1,6 @@
-const BaseRepository = require("../repository/base/baseRepository.js")
+const BaseRepository = require("../src/repository/base_repo/baseRepository.js")
 const Tax = require("../src/entities/tax")
+const transation = require("../src/entities/transation")
 
 class CarService{
     constructor({cars}){
@@ -20,10 +21,6 @@ class CarService{
 
     }
 
-    test(id){
-        return this.CarRepository.find(id)
-    }
-
     async getAvailableCar(carCategory){
         const randomVeycleId = this.chooseRandomVeycle(carCategory)
         return await this.CarRepository.find(randomVeycleId);
@@ -37,6 +34,19 @@ class CarService{
         const finalPrice = ((tax * price ) * (numberOfDay))
         const formattedPrice = this.currentCurrency.format(finalPrice)
         return formattedPrice
+    }
+    async rent(costumer,carCategory,numberOfDay){
+        const amount = this.calculateFinalPrice(costumer,carCategory,numberOfDay);
+        const car = await this.getAvailableCar(carCategory)
+
+        const today = new Date()
+        today.setDate(today.getDate() + numberOfDay)
+        const options = {year:"numeric", month:"long", day:"numeric"}
+        const dueDate = today.toLocaleDateString("pt-br",options)
+
+        return new transation({costumer,car, amount, dueDate})
+         
+
     }
 }
 module.exports=CarService

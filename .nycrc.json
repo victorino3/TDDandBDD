@@ -1,11 +1,13 @@
 {
-    "branches":100,
-    "lines":100,
-    "functions":100,
-    "statements":100,
-    "checkCoverage":true,
-     "reporter":[
-        "html",
-        "text"
-     ]
+   "branches": 100,
+   "lines": 100,
+   "functions": 100,
+   "statements": 100,
+   "checkCoverage": true,
+   "exclude": ["src/repository/base_repo/*.js"],
+   "reporter": [
+      "html",
+      "text"
+   ]
+
 }

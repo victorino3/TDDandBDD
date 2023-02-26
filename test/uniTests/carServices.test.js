@@ -1,5 +1,6 @@
 const { describe, it, before, beforeEach, afterEach } = require("mocha")
 const service = require("../../services/service")
+const transation = require("../../src/entities/transation")
 const { join } = require("path")
 const { expect } = require("chai")
 const sinon = require("sinon")
@@ -75,10 +76,47 @@ describe("CarService Suite Test",()=>{
         carCategory.price = 37.6
 
         const numberOfDay = 5
+        //When we doesnt depends to value that come to database
+        sandbox.stub(
+            carService,
+            "taxBaseOnCurrency"
+        ).get(()=>[{from:40,to:50,then:1.3}])
 
         const expected = carService.currentCurrency.format(244.40)
         const result = carService.calculateFinalPrice(costumer,carCategory,numberOfDay)
 
         expect(result).to.be.deep.equal(expected)
     })
+
+    it("GIven a costumer and a car actegory it should return a transation receipt",async()=>{
+        const car = mocks.valid_car
+        const carCategory ={
+            ...mocks.valid_carCategory,
+            price:37.6,
+            carId:[car._id]
+        };
+
+        const costumer = Object.create(mocks.valid_costumer);
+        costumer.age = 20
+        const numberOfDay = 5;
+        const dueDate = "10 de novembro de 2022"
+        const now = new Date(2022, 10, 5)
+
+        //To provide succefully test
+        sandbox.useFakeTimers(now.getTime())
+        sandbox.stub(
+            carService.CarRepository,
+            carService.CarRepository.find.name
+        ).resolves(car)
+        
+        const expectedAmount = carService.currentCurrency.format(206.80);
+
+        const result = await carService.rent(costumer,carCategory,numberOfDay);
+        const expected = new transation({costumer, car, amount:expectedAmount, dueDate})
+
+        expect(result).to.be.deep.equal(expected)
+        
+        
+    })
+
 })
